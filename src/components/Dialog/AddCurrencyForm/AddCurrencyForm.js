@@ -30,14 +30,14 @@ class OutlinedTextFields extends React.Component {
         className={classes.container}
         noValidate
         autoComplete="off"
-        onSubmit={this.props.handleAddCurrency}
+        onSubmit={e => this.props.handleAddCurrency(e, prefix)}
       >
         <TextField
           id="outlined-number"
           label={"Amount of " + prefix + " to be added"}
           onChange={this.props.handleChange}
           type="number"
-          name="amount"
+          name="AddAmount"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
@@ -51,6 +51,7 @@ class OutlinedTextFields extends React.Component {
           type="submit"
           variant="contained"
           color="primary"
+          onClick={this.props.handleClose}
         >
           Add
         </Button>

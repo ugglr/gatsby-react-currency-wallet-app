@@ -71,37 +71,29 @@ class Layout extends React.Component {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {["Balances", "Activity", "Recipients", "Invite a friend!"].map(
-            (text, index) => (
-              <React.Fragment>
-                {index === 0 ? (
-                  <Link to="/">
-                    <ListItem button key={text}>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  </Link>
-                ) : index === 1 ? (
-                  <Link to="/activity">
-                    <ListItem button key={text}>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  </Link>
-                ) : index === 2 ? (
-                  <Link to="/recipients">
-                    <ListItem button key={text}>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  </Link>
-                ) : (
-                  <Link to="/invite">
-                    <ListItem button key={text}>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  </Link>
-                )}
-              </React.Fragment>
-            )
-          )}
+          {["Balances", "Recipients", "Invite a friend!"].map((text, index) => (
+            <React.Fragment>
+              {index === 0 ? (
+                <Link to="/">
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              ) : index === 1 ? (
+                <Link to="/recipients">
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              ) : (
+                <Link to="/invite">
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              )}
+            </React.Fragment>
+          ))}
         </List>
         <Divider />
         <List>

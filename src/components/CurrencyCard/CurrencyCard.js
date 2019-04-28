@@ -11,6 +11,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import Button from "@material-ui/core/Button"
 import Divider from "@material-ui/core/Divider"
 
+import Dialog from "../Dialog/Dialog"
+import { Link } from "gatsby"
+
 const styles = theme => ({
   root: {
     width: "100%",
@@ -50,6 +53,7 @@ function DetailedExpansionPanel(props) {
   const { classes } = props
   return (
     <div className={classes.root}>
+      {/* REMOVE DEFAULT EXPAND AFTER DEVELOPMENT */}
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           {/* TITLE OF THE CARD */}
@@ -125,16 +129,19 @@ function DetailedExpansionPanel(props) {
         <ExpansionPanelActions>
           {/* ################BUTTONS############################ */}
           {/* TODO: PASS DOWN PROPS */}
-          <Button size="small" color="primary">
-            Add USD
-          </Button>
-          <Button size="small" color="primary">
-            Send USD
-          </Button>
-          <Button size="small" color="primary">
-            Convert USD
-          </Button>
-          <Button size="small">More</Button>
+
+          <div style={rightMargin}>
+            <Dialog title={"Add USD"} />
+          </div>
+
+          <div style={rightMargin}>
+            <Dialog title={"Send USD"} />
+          </div>
+
+          <Dialog title={"Convert USD"} />
+          <Link to="/faq">
+            <Button size="small">More</Button>
+          </Link>
         </ExpansionPanelActions>
       </ExpansionPanel>
     </div>
@@ -143,6 +150,10 @@ function DetailedExpansionPanel(props) {
 
 const topMargin = {
   marginTop: "0.5rem",
+}
+
+const rightMargin = {
+  marginRight: "0.5rem",
 }
 
 DetailedExpansionPanel.propTypes = {

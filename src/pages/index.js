@@ -6,8 +6,9 @@ export default class index extends Component {
   render() {
     return (
       <div>
-        <Layout />
-        <h1>Hello darkness, old friend.</h1>
+        <Layout>
+          <h1>Hello darkness, old friend.</h1>
+        </Layout>
       </div>
     )
   }

@@ -133,17 +133,17 @@ function DetailedExpansionPanel(props) {
 
           <div style={rightMargin}>
             <Dialog
-              title={"Add USD"}
+              title={"Add " + prefix}
               prefix={prefix}
               handleAddCurrency={handleAddCurrency}
             />
           </div>
 
           <div style={rightMargin}>
-            <Dialog title={"Send USD"} />
+            <Dialog title={"Send " + prefix} prefix={prefix} />
           </div>
 
-          <Dialog title={"Convert USD"} />
+          <Dialog title={"Convert " + prefix} prefix={prefix} />
           <Link to="/faq">
             <Button size="small">More</Button>
           </Link>

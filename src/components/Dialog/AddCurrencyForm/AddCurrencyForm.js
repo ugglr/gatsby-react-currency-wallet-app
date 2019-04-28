@@ -48,7 +48,7 @@ class OutlinedTextFields extends React.Component {
       >
         <TextField
           id="outlined-number"
-          label="Amount to be added"
+          label={"Amount of " + prefix + " to be added"}
           onChange={this.handleChange}
           type="number"
           name="amount"

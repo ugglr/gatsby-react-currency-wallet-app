@@ -6,12 +6,9 @@ import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
 import Hidden from "@material-ui/core/Hidden"
 import IconButton from "@material-ui/core/IconButton"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
-import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
-import MailIcon from "@material-ui/icons/Mail"
 import MenuIcon from "@material-ui/icons/Menu"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
@@ -19,6 +16,9 @@ import { withStyles } from "@material-ui/core/styles"
 
 //This adds the roboto font to all content
 import "./layout.css"
+
+//import Link from Gatsby
+import { Link } from "gatsby"
 
 const drawerWidth = 240
 
@@ -71,24 +71,62 @@ class Layout extends React.Component {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {["Balances", "Activity", "Recipients", "Invite a friend!"].map(
+            (text, index) => (
+              <React.Fragment>
+                {index === 0 ? (
+                  <Link to="/">
+                    <ListItem button key={text}>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  </Link>
+                ) : index === 1 ? (
+                  <Link to="/activity">
+                    <ListItem button key={text}>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  </Link>
+                ) : index === 2 ? (
+                  <Link to="/recipients">
+                    <ListItem button key={text}>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  </Link>
+                ) : (
+                  <Link to="/invite">
+                    <ListItem button key={text}>
+                      <ListItemText primary={text} />
+                    </ListItem>
+                  </Link>
+                )}
+              </React.Fragment>
+            )
+          )}
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {["About", "FAQ", "Legal"].map((text, index) => (
+            <React.Fragment>
+              {index === 0 ? (
+                <Link to="/about">
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              ) : index === 1 ? (
+                <Link to="/faq">
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              ) : (
+                <Link to="/legal">
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              )}
+            </React.Fragment>
           ))}
         </List>
       </div>

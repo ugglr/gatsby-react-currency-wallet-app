@@ -50,7 +50,7 @@ const styles = theme => ({
 })
 
 function DetailedExpansionPanel(props) {
-  const { classes } = props
+  const { classes, prefix, currencyName, balance, handleAddCurrency } = props
   return (
     <div className={classes.root}>
       {/* REMOVE DEFAULT EXPAND AFTER DEVELOPMENT */}
@@ -59,15 +59,17 @@ function DetailedExpansionPanel(props) {
           {/* TITLE OF THE CARD */}
           <div className={classes.column}>
             {/* ######################TITLE OF THE CARD####################### */}
-            {/* TODO: PASS DOWN PROPS */}
             <Typography
               className={classes.heading}
               style={{ fontSize: "1.3rem" }}
             >
-              <strong>0 USD</strong>
+              <strong>
+                {balance}
+                {prefix}
+              </strong>
             </Typography>
             <Typography variant="caption" style={{ fontSize: "1rem" }}>
-              US Dollars
+              {currencyName}
             </Typography>
           </div>
           <div className={classes.column}>
@@ -128,10 +130,13 @@ function DetailedExpansionPanel(props) {
         <Divider />
         <ExpansionPanelActions>
           {/* ################BUTTONS############################ */}
-          {/* TODO: PASS DOWN PROPS */}
 
           <div style={rightMargin}>
-            <Dialog title={"Add USD"} />
+            <Dialog
+              title={"Add USD"}
+              prefix={prefix}
+              handleAddCurrency={handleAddCurrency}
+            />
           </div>
 
           <div style={rightMargin}>

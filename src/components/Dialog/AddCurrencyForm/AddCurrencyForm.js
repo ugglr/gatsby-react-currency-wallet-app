@@ -1,10 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
-import classNames from "classnames"
 import { withStyles } from "@material-ui/core/styles"
-import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "@material-ui/core/TextField"
 
+import { Button } from "@material-ui/core"
 const styles = theme => ({
   container: {
     display: "flex",
@@ -22,82 +21,53 @@ const styles = theme => ({
   },
 })
 
-const currencies = [
-  {
-    value: "USD",
-    label: "$",
-  },
-  {
-    value: "EUR",
-    label: "€",
-  },
-  {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
-  },
-]
-
 class OutlinedTextFields extends React.Component {
   state = {
-    name: "Cat in the Hat",
-    age: "",
-    multiline: "Controlled",
-    currency: "EUR",
+    amount: 0,
   }
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    })
+  handleChange = async e => {
+    e.preventDefault()
+    //Add the information from the form to the state
+    let { name, value } = e.target
+
+    await this.setState({ [name]: value })
+    console.log(this.state)
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, handleAddCurrency, prefix } = this.props
+    const { amount } = this.state
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-        <div>
-          {" "}
-          <TextField
-            id="outlined-select-currency"
-            select
-            label="Select"
-            className={classes.textField}
-            value={this.state.currency}
-            onChange={this.handleChange("currency")}
-            SelectProps={{
-              MenuProps: {
-                className: classes.menu,
-              },
-            }}
-            helperText="Please select your currency"
-            margin="normal"
-            variant="outlined"
-          >
-            {currencies.map(option => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="outlined-number"
-            label="Amount"
-            value={this.state.age}
-            onChange={this.handleChange("age")}
-            type="number"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            margin="normal"
-            variant="outlined"
-          />
-        </div>
+      <form
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+        onSubmit={handleAddCurrency(prefix, amount)}
+      >
+        <TextField
+          id="outlined-number"
+          label="Amount to be added"
+          onChange={this.handleChange}
+          type="number"
+          name="amount"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          margin="normal"
+          variant="outlined"
+        />
+        <br />
+        <Button
+          style={{ marginLeft: "0.5rem" }}
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
+          Add
+        </Button>
       </form>
     )
   }

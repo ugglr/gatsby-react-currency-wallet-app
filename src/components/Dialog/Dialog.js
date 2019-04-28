@@ -41,7 +41,7 @@ class FullScreenDialog extends React.Component {
   }
 
   render() {
-    const { classes, title } = this.props
+    const { classes, title, handleAddCurrency, prefix } = this.props
     return (
       <div>
         <Button
@@ -78,7 +78,10 @@ class FullScreenDialog extends React.Component {
             style={{ marginTop: "2rem", marginLeft: "2rem", maxWidth: "960px" }}
           >
             {title[0] === "A" ? (
-              <AddCurrencyForm />
+              <AddCurrencyForm
+                handleAddCurrency={handleAddCurrency}
+                prefix={prefix}
+              />
             ) : title[0] === "S" ? (
               <SendCurrencyForm />
             ) : (

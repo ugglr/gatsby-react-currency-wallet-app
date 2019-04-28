@@ -22,34 +22,20 @@ const styles = theme => ({
 })
 
 class OutlinedTextFields extends React.Component {
-  state = {
-    amount: 0,
-  }
-
-  handleChange = async e => {
-    e.preventDefault()
-    //Add the information from the form to the state
-    let { name, value } = e.target
-
-    await this.setState({ [name]: value })
-    console.log(this.state)
-  }
-
   render() {
-    const { classes, handleAddCurrency, prefix } = this.props
-    const { amount } = this.state
+    const { classes, prefix } = this.props
 
     return (
       <form
         className={classes.container}
         noValidate
         autoComplete="off"
-        onSubmit={handleAddCurrency(prefix, amount)}
+        onSubmit={this.props.handleAddCurrency}
       >
         <TextField
           id="outlined-number"
           label={"Amount of " + prefix + " to be added"}
-          onChange={this.handleChange}
+          onChange={this.props.handleChange}
           type="number"
           name="amount"
           className={classes.textField}

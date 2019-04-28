@@ -5,31 +5,23 @@ import CurrencyCard from "../components/CurrencyCard/CurrencyCard"
 
 export default class index extends Component {
   state = {
-    USD: {
-      prefix: "USD",
-      currencyName: "US Dollars",
-      balance: 100,
-    },
-    EUR: {
-      prefix: "EUR",
-      currencyName: "Euro",
-      balance: 500,
-    },
-    CHF: {
-      prefix: "CHF",
-      currencyName: "Swiss Francs",
-      balance: 10000,
-    },
+    amount: 0,
+    USD_wallet: 100,
+    EUR_wallet: 500,
+    CHF_wallet: 10000,
     totalValueUSD: null,
   }
 
-  handleAddCurrency = e => prefix => amount => {
+  handleChange = async e => {
     e.preventDefault()
-    let tmp = { ...this.state.prefix }
-    tmp.balance = tmp.balance + amount
-    console.log("prefix is: " + prefix)
-    console.log("amount is: " + amount)
-    this.setState({ tmp })
+    let { name, value } = e.target
+
+    await this.setState({ [name]: value })
+    console.log(this.state)
+  }
+
+  handleAddCurrency = e => {
+    e.preventDefault()
     console.log("The ADD button was pressed")
   }
 
@@ -38,21 +30,22 @@ export default class index extends Component {
       <div>
         <Layout>
           <CurrencyCard
-            prefix={this.state.USD.prefix}
-            currencyName={this.state.USD.currencyName}
-            balance={this.state.USD.balance}
+            prefix={"USD"}
+            currencyName={"US Dollars"}
+            balance={this.state.USD_wallet}
+            handleChange={this.handleChange}
             handleAddCurrency={this.handleAddCurrency}
           />
           <CurrencyCard
-            prefix={this.state.EUR.prefix}
-            currencyName={this.state.EUR.currencyName}
-            balance={this.state.EUR.balance}
+            prefix={"EUR"}
+            currencyName={"EURO"}
+            balance={this.state.EUR_wallet}
             handleAddCurrency={this.handleAddCurrency}
           />
           <CurrencyCard
-            prefix={this.state.CHF.prefix}
-            currencyName={this.state.CHF.currencyName}
-            balance={this.state.CHF.balance}
+            prefix={"CHF"}
+            currencyName={"Swiss Franc"}
+            balance={this.state.CHF_wallet}
             handleAddCurrency={this.handleAddCurrency}
           />
         </Layout>

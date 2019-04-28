@@ -50,7 +50,7 @@ const styles = theme => ({
 })
 
 function DetailedExpansionPanel(props) {
-  const { classes, prefix, currencyName, balance, handleAddCurrency } = props
+  const { classes, prefix, currencyName, balance } = props
   return (
     <div className={classes.root}>
       {/* REMOVE DEFAULT EXPAND AFTER DEVELOPMENT */}
@@ -135,7 +135,8 @@ function DetailedExpansionPanel(props) {
             <Dialog
               title={"Add " + prefix}
               prefix={prefix}
-              handleAddCurrency={handleAddCurrency}
+              handleChange={props.handleChange}
+              handleAddCurrency={props.handleAddCurrency}
             />
           </div>
 

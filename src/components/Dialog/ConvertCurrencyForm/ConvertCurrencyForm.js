@@ -52,10 +52,11 @@ class OutlinedTextFields extends React.Component {
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
-        <label>{"From " + prefix}</label>
+        <label style={{ marginRight: "50rem" }}>{"From " + prefix}</label>
+        <br />
         <TextField
           id="outlined-number"
-          label="Amount"
+          label={"Amount in " + prefix}
           onChange={this.handleChange}
           type="number"
           className={classes.textField}
@@ -65,6 +66,9 @@ class OutlinedTextFields extends React.Component {
           margin="normal"
           variant="outlined"
         />
+
+        <label style={{ marginRight: "50rem" }}>To:</label>
+        <br />
 
         <TextField
           id="outlined-select-currency"
@@ -89,7 +93,7 @@ class OutlinedTextFields extends React.Component {
         </TextField>
         <TextField
           id="outlined-number"
-          label="Number"
+          label="Amount"
           onChange={this.handleChange("age")}
           type="number"
           className={classes.textField}

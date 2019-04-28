@@ -3,16 +3,16 @@ import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
-import ListItemText from "@material-ui/core/ListItemText"
-import ListItem from "@material-ui/core/ListItem"
-import List from "@material-ui/core/List"
-import Divider from "@material-ui/core/Divider"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
 import CloseIcon from "@material-ui/icons/Close"
 import Slide from "@material-ui/core/Slide"
+
+import AddCurrencyForm from "./AddCurrencyForm/AddCurrencyForm"
+import SendCurrencyForm from "./SendCurrencyForm/SendCurrencyForm"
+import ConvertCurrencyForm from "./ConvertCurrencyForm/ConvertCurrencyForm"
 
 const styles = {
   appBar: {
@@ -67,25 +67,24 @@ class FullScreenDialog extends React.Component {
                 <CloseIcon />
               </IconButton>
               <Typography variant="h6" color="inherit" className={classes.flex}>
-                Sound
+                {title}
               </Typography>
               <Button color="inherit" onClick={this.handleClose}>
-                save
+                Close
               </Button>
             </Toolbar>
           </AppBar>
-          <List>
-            <ListItem button>
-              <ListItemText primary="Phone ringtone" secondary="Titania" />
-            </ListItem>
-            <Divider />
-            <ListItem button>
-              <ListItemText
-                primary="Default notification ringtone"
-                secondary="Tethys"
-              />
-            </ListItem>
-          </List>
+          <div
+            style={{ marginTop: "2rem", marginLeft: "2rem", maxWidth: "960px" }}
+          >
+            {title[0] === "A" ? (
+              <AddCurrencyForm />
+            ) : title[0] === "S" ? (
+              <SendCurrencyForm />
+            ) : (
+              <ConvertCurrencyForm />
+            )}
+          </div>
         </Dialog>
       </div>
     )

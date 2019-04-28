@@ -8,7 +8,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary"
 import ExpansionPanelActions from "@material-ui/core/ExpansionPanelActions"
 import Typography from "@material-ui/core/Typography"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import Chip from "@material-ui/core/Chip"
 import Button from "@material-ui/core/Button"
 import Divider from "@material-ui/core/Divider"
 
@@ -53,27 +52,68 @@ function DetailedExpansionPanel(props) {
     <div className={classes.root}>
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          {/* TITLE OF THE CARD */}
           <div className={classes.column}>
-            <Typography className={classes.heading}>Location</Typography>
+            {/* ######################TITLE OF THE CARD####################### */}
+            {/* TODO: PASS DOWN PROPS */}
+            <Typography
+              className={classes.heading}
+              style={{ fontSize: "1.3rem" }}
+            >
+              <strong>0 USD</strong>
+            </Typography>
+            <Typography variant="caption" style={{ fontSize: "1rem" }}>
+              US Dollars
+            </Typography>
           </div>
           <div className={classes.column}>
             <Typography className={classes.secondaryHeading}>
-              Select trip destination
+              Expand for details
             </Typography>
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
           <div className={classes.column} />
+          {/* ######################FIRST COLUMN#################################### */}
           <div className={classes.column}>
-            <Chip
-              label="Barbados"
-              className={classes.chip}
-              onDelete={() => {}}
-            />
+            {/*ACCOUNT HOLDER FIELD */}
+            <Typography variant="caption">Account Holder:</Typography>
+            <Typography>Savvi.io FBO John Doe</Typography>
+
+            {/*BANK CODE FIELD */}
+            <Typography variant="caption" style={topMargin}>
+              Bank Code (SWIFT / BIC):
+            </Typography>
+            <Typography>XXXXXXXXXX</Typography>
+
+            {/*ADRESS NUMBER FIELD */}
+            <Typography variant="caption" style={topMargin}>
+              Adress:
+            </Typography>
+            <Typography>
+              Savvi.io
+              <br />
+              16W Street, Geneva, Switzerland
+            </Typography>
           </div>
+          {/* #####################SECOND COLUMN######################################### */}
           <div className={classNames(classes.column, classes.helper)}>
+            {/*ACCOUNT NUMBER FIELD */}
+            <Typography variant="caption">Account Number:</Typography>
+            <Typography>XXXXXXXXXX</Typography>
+            {/*WIRE TRANSFER NUMBER FIELD */}
+            <Typography variant="caption" style={topMargin}>
+              Wire Transfer Number:
+            </Typography>
+            <Typography>XXXXXXXXXX</Typography>
+            {/*ROUTING NUMBER FIELD */}
+            <Typography variant="caption" style={topMargin}>
+              Routing Number (ACH or ABA):
+            </Typography>
+            <Typography>XXXXXXXXXX</Typography>
+            <br />
             <Typography variant="caption">
-              Select your destination of choice
+              How do I use these?
               <br />
               <a href="#sub-labels-and-columns" className={classes.link}>
                 Learn more
@@ -83,14 +123,26 @@ function DetailedExpansionPanel(props) {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button size="small">Cancel</Button>
+          {/* ################BUTTONS############################ */}
+          {/* TODO: PASS DOWN PROPS */}
           <Button size="small" color="primary">
-            Save
+            Add USD
           </Button>
+          <Button size="small" color="primary">
+            Send USD
+          </Button>
+          <Button size="small" color="primary">
+            Convert USD
+          </Button>
+          <Button size="small">More</Button>
         </ExpansionPanelActions>
       </ExpansionPanel>
     </div>
   )
+}
+
+const topMargin = {
+  marginTop: "0.5rem",
 }
 
 DetailedExpansionPanel.propTypes = {

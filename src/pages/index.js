@@ -226,7 +226,11 @@ export default class index extends Component {
             Hook up front-end to database to have data persistance.
           </Typography>
           {/* THIS COMPONENT DISPLAYS THE SUM OF CURRENCIES IN USD AT THE TOP OF THE PAGE */}
-          <SumExpansionPanel sum={this.state.totalValueUSD} />
+          <SumExpansionPanel
+            convertUSDtoEUR={this.convertUSDtoEUR}
+            convertUSDtoCHF={this.convertUSDtoCHF}
+            sum={this.state.totalValueUSD}
+          />
 
           {/*THIS IS THE CURRENCY CARD/WALLET DISPLAY FOR USD */}
           <CurrencyCard

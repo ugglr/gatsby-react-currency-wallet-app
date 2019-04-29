@@ -36,7 +36,12 @@ class SimpleExpansionPanel extends Component {
       <div className={classes.root}>
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <TotalWalletValue sum={sum} />
+            <TotalWalletValue
+              selectedValue={this.state.selectedValue}
+              convertUSDtoEUR={this.props.convertUSDtoEUR}
+              convertUSDtoCHF={this.props.convertUSDtoCHF}
+              sum={sum}
+            />
             <Typography
               variant="caption"
               style={{

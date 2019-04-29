@@ -90,6 +90,7 @@ class FullScreenDialog extends React.Component {
               <ConvertCurrencyForm
                 prefix={prefix}
                 handleClose={this.handleClose}
+                handleConvert={this.props.handleConvert}
               />
             )}
           </div>

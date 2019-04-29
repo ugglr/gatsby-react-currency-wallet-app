@@ -144,7 +144,11 @@ function DetailedExpansionPanel(props) {
             <Dialog title={"Send " + prefix} prefix={prefix} />
           </div>
 
-          <Dialog title={"Convert " + prefix} prefix={prefix} />
+          <Dialog
+            title={"Convert " + prefix}
+            prefix={prefix}
+            handleConvert={props.handleConvert}
+          />
           <Link to="/faq">
             <Button size="small">More</Button>
           </Link>

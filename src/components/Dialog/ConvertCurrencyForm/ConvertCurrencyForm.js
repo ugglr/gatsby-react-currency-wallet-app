@@ -50,6 +50,14 @@ class OutlinedTextFields extends React.Component {
     console.log(this.state)
   }
 
+  handleSubmit = e => {
+    e.preventDefault()
+    let originalCurrency = this.props.prefix
+    let { currency, originalCurrencyAmount } = this.state
+    console.log(originalCurrencyAmount + originalCurrency + "to" + currency)
+    this.props.handleConvert(originalCurrency, originalCurrencyAmount, currency)
+  }
+
   render() {
     const { classes, prefix } = this.props
 
@@ -59,6 +67,7 @@ class OutlinedTextFields extends React.Component {
         className={classes.container}
         noValidate
         autoComplete="off"
+        onSubmit={this.handleSubmit}
       >
         {/* HOW MUCH FROM THE PREFIX CURRENCY SHALL BE CONVERTED */}
         <TextField

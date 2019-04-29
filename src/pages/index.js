@@ -26,22 +26,6 @@ export default class index extends Component {
     this.setState({ totalValueUSD: sum })
   }
 
-  //THIS FUNCTION CONVERTS EUR TO USD
-  convertEURtoUSD = amount => {
-    let EURtoUSD_Rate = 1.12
-    let res = amount * EURtoUSD_Rate
-    console.log("Converted: " + amount + "EUR, to: " + res + "USD")
-    return res
-  }
-
-  //THIS FUNCTION CONVERTS CHF TO USD
-  convertCHFtoUSD = amount => {
-    let CHFtoUSD_Rate = 0.98
-    let res = amount * CHFtoUSD_Rate
-    console.log("Converted: " + amount + "CHF, to: " + res + "USD")
-    return res
-  }
-
   //THIS FUNCTION HANDLES CHANGE OF INPUT FIELDS AND ADDS IT TO THE STATE
   handleChange = async e => {
     e.preventDefault()
@@ -95,8 +79,118 @@ export default class index extends Component {
   }
 
   //THIS FUNCTION HANDLES CONVERSION BETWEEN CURRENCIES
-  handleConvert = () => {
-    console.log("We are not in the handleConvert function")
+  handleConvert = (originalCurrency, originalCurrencyAmount, currency) => {
+    console.log("We are now in the handleConvert function")
+    console.log("We have received the following:")
+    console.log("Convert From: " + originalCurrency)
+    console.log("The amount to be converted: " + originalCurrencyAmount)
+    console.log("Into: " + currency)
+
+    let { USD_wallet, EUR_wallet, CHF_wallet } = this.state
+    let date = Date()
+
+    this.setState({
+      activity: [
+        date +
+          ": Converted: " +
+          originalCurrencyAmount +
+          originalCurrency +
+          " to " +
+          currency,
+        ...this.state.activity,
+      ],
+    })
+
+    switch (originalCurrency) {
+      case "USD":
+        console.log("Starting to convert from USD")
+        this.setState({ USD_wallet: USD_wallet - originalCurrencyAmount })
+        if (currency === "EUR") {
+          let newAmount = this.convertUSDtoEUR(originalCurrencyAmount)
+          this.setState({
+            EUR_wallet: EUR_wallet + newAmount,
+          })
+          //PUSH CHANGE TO DATABASE
+        } else {
+          let newAmount = this.convertUSDtoCHF(originalCurrencyAmount)
+          this.setState({ CHF_wallet: CHF_wallet + newAmount })
+          //PUSH CHANGE TO DATABASE
+        }
+        break
+      case "EUR":
+        console.log("Starting to convert from EUR")
+        this.setState({ EUR_wallet: EUR_wallet - originalCurrencyAmount })
+        if (currency === "USD") {
+          let newAmount = this.convertEURtoUSD(originalCurrencyAmount)
+          this.setState({ USD_wallet: USD_wallet + newAmount })
+          //PUSH CHANGE TO DATABASE
+        } else {
+          let newAmount = this.convertEURtoCHF(originalCurrencyAmount)
+          this.setState({ CHF_wallet: CHF_wallet + newAmount })
+        }
+        break
+      case "CHF":
+        console.log("Starting to convert from CHF")
+        this.setState({ CHF_wallet: CHF_wallet - originalCurrencyAmount })
+        if (currency === "USD") {
+          let newAmount = this.convertCHFtoUSD(originalCurrencyAmount)
+          this.setState({ USD_wallet: USD_wallet + newAmount })
+        } else {
+          let newAmount = this.convertCHFtoEUR(originalCurrencyAmount)
+          this.setState({ EUR_wallet: EUR_wallet + newAmount })
+        }
+        break
+      default:
+        break
+    }
+    this.calculateTotalSumInDollars()
+  }
+
+  //###### FROM USD TO OTHER CURRENCIES FUNCTIONS##############
+  convertUSDtoEUR = amount => {
+    let USDtoEUR_Rate = 0.9
+    let res = amount * USDtoEUR_Rate
+    return res
+  }
+
+  convertUSDtoCHF = amount => {
+    let USDtoCHF_Rate = 1.02
+    let res = amount * USDtoCHF_Rate
+    return res
+  }
+
+  //###### FROM EUR TO OTHER CURRENCIES FUNCTIONS ###############
+
+  //THIS FUNCTION CONVERTS EUR TO USD
+  convertEURtoUSD = amount => {
+    //TODO: GET FRESH RATES FROM AN API
+    let EURtoUSD_Rate = 1.12
+    let res = amount * EURtoUSD_Rate
+    console.log("Converted: " + amount + "EUR, to: " + res + "USD")
+    return res
+  }
+
+  convertEURtoCHF = amount => {
+    let EURtoCHF_Rate = 1.14
+    let res = amount * EURtoCHF_Rate
+    return res
+  }
+
+  //##### FROM CHF TO OTHER CURRENCIES FUNCTIONS
+
+  //THIS FUNCTION CONVERTS CHF TO USD
+  convertCHFtoUSD = amount => {
+    //TODO: GET FRESH RATES FROM AN API
+    let CHFtoUSD_Rate = 0.98
+    let res = amount * CHFtoUSD_Rate
+    console.log("Converted: " + amount + "CHF, to: " + res + "USD")
+    return res
+  }
+
+  convertCHFtoEUR = amount => {
+    let CHFtoEUR_Rate = 0.88
+    let res = amount * CHFtoEUR_Rate
+    return res
   }
 
   componentWillMount() {
@@ -120,6 +214,7 @@ export default class index extends Component {
             balance={this.state.USD_wallet}
             handleChange={this.handleChange}
             handleAddCurrency={this.handleAddCurrency}
+            handleConvert={this.handleConvert}
           />
 
           {/*THIS IS THE CURRENCY CARD/WALLET DISPLAY FOR EUR */}
@@ -129,6 +224,7 @@ export default class index extends Component {
             balance={this.state.EUR_wallet}
             handleChange={this.handleChange}
             handleAddCurrency={this.handleAddCurrency}
+            handleConvert={this.handleConvert}
           />
 
           {/*THIS IS THE CURRENCY CARD/WALLET DISPLAY FOR CHF */}
@@ -138,6 +234,7 @@ export default class index extends Component {
             balance={this.state.CHF_wallet}
             handleChange={this.handleChange}
             handleAddCurrency={this.handleAddCurrency}
+            handleConvert={this.handleConvert}
           />
 
           {/*THIS COMPONENT MAPS THROUGH THE ACTIVITY ARRAY AND DISPLAYS

@@ -53,8 +53,8 @@ function DetailedExpansionPanel(props) {
   const { classes, prefix, currencyName, balance } = props
   return (
     <div className={classes.root}>
-      {/* REMOVE DEFAULT EXPAND AFTER DEVELOPMENT */}
-      <ExpansionPanel defaultExpanded>
+      {/* REMOVE DEFAULT EXPAND {defaultExpanded} AFTER DEVELOPMENT */}
+      <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           {/* TITLE OF THE CARD */}
           <div className={classes.column}>

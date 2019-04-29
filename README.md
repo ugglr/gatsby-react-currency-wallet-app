@@ -18,6 +18,18 @@ http://localhost:8000/
 NOTE: It will compile with warnings because of the original dev path does not match current path.
 NOTE: If you get an error message saying something about bootstrap and JSON, reload the page and it should disapear, it is a bug with npm.
 
+EXTERNAL LIBRARIES
+I used gatsby.js because it's super easy to manage routing and deploying the application
+Everything will be super fast when serving the static content which it builds into the public folder.
+
+I used Material-UI because it gives me responsive components out of the box,
+and I think it is the, style wise, most complete library out there.
+
+I challenged myself not to use Redux, I think if the app do not have user authentication one shall try to make do without it.
+
+I have not implemented any tests, for the extra point, I think testing is super important,
+I could install jest and have at it if you wish.
+
 ## Coding Challenge
 
 We're looking for people who can build awesome products, so we created the following challenge to test your developer skills. We are looking for a creative mind that can bring best practices and UX together.

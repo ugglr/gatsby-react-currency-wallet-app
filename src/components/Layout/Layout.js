@@ -72,53 +72,53 @@ class Layout extends React.Component {
         <Divider />
         <List>
           {["Balances", "Recipients", "Invite a friend!"].map((text, index) => (
-            <React.Fragment>
+            <div key={index}>
               {index === 0 ? (
                 <Link to="/">
-                  <ListItem button key={text}>
+                  <ListItem button>
                     <ListItemText primary={text} />
                   </ListItem>
                 </Link>
               ) : index === 1 ? (
                 <Link to="/recipients">
-                  <ListItem button key={text}>
+                  <ListItem button>
                     <ListItemText primary={text} />
                   </ListItem>
                 </Link>
               ) : (
                 <Link to="/invite">
-                  <ListItem button key={text}>
+                  <ListItem button>
                     <ListItemText primary={text} />
                   </ListItem>
                 </Link>
               )}
-            </React.Fragment>
+            </div>
           ))}
         </List>
         <Divider />
         <List>
           {["About", "FAQ", "Legal"].map((text, index) => (
-            <React.Fragment>
+            <div key={index}>
               {index === 0 ? (
                 <Link to="/about">
-                  <ListItem button key={text}>
+                  <ListItem button>
                     <ListItemText primary={text} />
                   </ListItem>
                 </Link>
               ) : index === 1 ? (
                 <Link to="/faq">
-                  <ListItem button key={text}>
+                  <ListItem button>
                     <ListItemText primary={text} />
                   </ListItem>
                 </Link>
               ) : (
                 <Link to="/legal">
-                  <ListItem button key={text}>
+                  <ListItem button>
                     <ListItemText primary={text} />
                   </ListItem>
                 </Link>
               )}
-            </React.Fragment>
+            </div>
           ))}
         </List>
       </div>

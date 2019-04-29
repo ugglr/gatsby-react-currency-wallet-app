@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles"
 import MenuItem from "@material-ui/core/MenuItem"
 import TextField from "@material-ui/core/TextField"
+import { Button } from "@material-ui/core"
 
 const styles = theme => ({
   container: {
@@ -31,33 +32,39 @@ const currencies = [
     label: "€",
   },
   {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
+    value: "CHF",
+    label: "CHF",
   },
 ]
 
 class OutlinedTextFields extends React.Component {
-  handleChange = name => event => {
-    this.setState({
+  state = {
+    currency: "EUR",
+    originalCurrencyAmount: 0,
+  }
+
+  handleChange = name => async event => {
+    await this.setState({
       [name]: event.target.value,
     })
+    console.log(this.state)
   }
 
   render() {
     const { classes, prefix } = this.props
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-        <label style={{ marginRight: "50rem" }}>{"From " + prefix}</label>
-        <br />
+      <form
+        type="submit"
+        className={classes.container}
+        noValidate
+        autoComplete="off"
+      >
+        {/* HOW MUCH FROM THE PREFIX CURRENCY SHALL BE CONVERTED */}
         <TextField
           id="outlined-number"
           label={"Amount in " + prefix}
-          onChange={this.handleChange}
+          onChange={this.handleChange("originalCurrencyAmount")}
           type="number"
           className={classes.textField}
           InputLabelProps={{
@@ -67,14 +74,15 @@ class OutlinedTextFields extends React.Component {
           variant="outlined"
         />
 
-        <label style={{ marginRight: "50rem" }}>To:</label>
+        <label>To:</label>
         <br />
-
+        {/* INTO WHAT CURRENCY SHALL THE AMOUNT BE CONVERTED TO */}
         <TextField
           id="outlined-select-currency"
           select
-          label="Select"
+          label=""
           className={classes.textField}
+          value={this.state.currency}
           onChange={this.handleChange("currency")}
           SelectProps={{
             MenuProps: {
@@ -91,18 +99,14 @@ class OutlinedTextFields extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-        <TextField
-          id="outlined-number"
-          label="Amount"
-          onChange={this.handleChange("age")}
-          type="number"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-          variant="outlined"
-        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          onClick={this.props.handleClose}
+        >
+          Convert
+        </Button>
       </form>
     )
   }

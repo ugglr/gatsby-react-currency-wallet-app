@@ -87,7 +87,10 @@ class FullScreenDialog extends React.Component {
             ) : title[0] === "S" ? (
               <SendCurrencyForm />
             ) : (
-              <ConvertCurrencyForm prefix={prefix} />
+              <ConvertCurrencyForm
+                prefix={prefix}
+                handleClose={this.handleClose}
+              />
             )}
           </div>
         </Dialog>

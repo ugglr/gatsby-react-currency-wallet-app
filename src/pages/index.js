@@ -8,7 +8,6 @@ import LatestActivity from "../components/LatestActivity/LatestActivity"
 export default class index extends Component {
   state = {
     addAmount: 0,
-    convertAmount: 0,
     activity: [],
     USD_wallet: 100,
     EUR_wallet: 500,
@@ -93,6 +92,11 @@ export default class index extends Component {
         //CREATE AN ERROR MESSAGE
         break
     }
+  }
+
+  //THIS FUNCTION HANDLES CONVERSION BETWEEN CURRENCIES
+  handleConvert = () => {
+    console.log("We are not in the handleConvert function")
   }
 
   componentWillMount() {

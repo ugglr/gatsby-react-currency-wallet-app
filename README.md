@@ -1,4 +1,22 @@
-# Frontend Engineer
+# Instructions of how to deploy the project locally on your machine
+
+Go to github repo:
+https://github.com/ugglr/savvy-react-currenct-wallet
+
+Clone or download repo:
+https://github.com/ugglr/savvy-react-currenct-wallet.git
+
+cd into directory:
+\$cd .../savvy-react-currenct-wallet <----- just realized I spelled currency wrong.
+
+install dependencies with npm
+\$npm install
+
+Development server will now be running on
+http://localhost:8000/
+
+NOTE: It will compile with warnings because of the original dev path does not match current path.
+NOTE: If you get an error message saying something about bootstrap and JSON, reload the page and it should disapear, it is a bug with npm.
 
 ## Coding Challenge
 

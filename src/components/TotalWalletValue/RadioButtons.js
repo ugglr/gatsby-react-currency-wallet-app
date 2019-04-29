@@ -1,65 +1,35 @@
 import React from "react"
-import PropTypes from "prop-types"
-import { withStyles } from "@material-ui/core/styles"
-import green from "@material-ui/core/colors/green"
 import Radio from "@material-ui/core/Radio"
-
-const styles = {
-  root: {
-    color: green[600],
-    "&$checked": {
-      color: green[500],
-    },
-  },
-  checked: {},
-}
+import { Typography } from "@material-ui/core"
 
 class RadioButtons extends React.Component {
-  state = {
-    selectedValue: "USD",
-  }
-
-  handleChange = event => {
-    this.setState({ selectedValue: event.target.value })
-  }
-
   render() {
-    const { classes } = this.props
-
     return (
       <div>
+        <Typography>Select USD as default value</Typography>
         <Radio
-          checked={this.state.selectedValue === "USD"}
-          onChange={this.handleChange}
+          checked={this.props.selectedValue === "USD"}
+          onChange={this.props.handleChange}
           value="USD"
-          name="radio-button-demo"
           aria-label="USD"
         />
+        <Typography>Select EUR as default value</Typography>
         <Radio
-          checked={this.state.selectedValue === "EUR"}
-          onChange={this.handleChange}
+          checked={this.props.selectedValue === "EUR"}
+          onChange={this.props.handleChange}
           value="EUR"
-          name="radio-button-demo"
           aria-label="EUR"
         />
+        <Typography>Select CHF as default value</Typography>
         <Radio
-          checked={this.state.selectedValue === "CHF"}
-          onChange={this.handleChange}
+          checked={this.props.selectedValue === "CHF"}
+          onChange={this.props.handleChange}
           value="CHF"
-          name="radio-button-demo"
           aria-label="CHF"
-          classes={{
-            root: classes.root,
-            checked: classes.checked,
-          }}
         />
       </div>
     )
   }
 }
 
-RadioButtons.propTypes = {
-  classes: PropTypes.object.isRequired,
-}
-
-export default withStyles(styles)(RadioButtons)
+export default RadioButtons

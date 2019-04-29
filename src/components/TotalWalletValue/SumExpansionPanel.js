@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Component } from "react"
 import PropTypes from "prop-types"
 import { withStyles } from "@material-ui/core/styles"
 import ExpansionPanel from "@material-ui/core/ExpansionPanel"
@@ -6,6 +6,8 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary"
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails"
 import Typography from "@material-ui/core/Typography"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
+import TotalWalletValue from "./TotalWalletValue"
+import RadioButtons from "./RadioButtons"
 
 const styles = theme => ({
   root: {
@@ -17,23 +19,46 @@ const styles = theme => ({
   },
 })
 
-function SimpleExpansionPanel(props) {
-  const { classes } = props
-  return (
-    <div className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Expansion Panel 1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    </div>
-  )
+class SimpleExpansionPanel extends Component {
+  state = {
+    selectedValue: "USD",
+  }
+
+  handleChange = async e => {
+    await this.setState({ selectedValue: e.target.value })
+    console.log(this.state)
+  }
+
+  render() {
+    const { classes, sum } = this.props
+
+    return (
+      <div className={classes.root}>
+        <ExpansionPanel>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <TotalWalletValue sum={sum} />
+            <Typography
+              variant="caption"
+              style={{
+                marginLeft: "2rem",
+                marginTop: "0.5rem",
+                fontSize: "0.7rem",
+              }}
+              className={classes.heading}
+            >
+              expand to select default currency
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <RadioButtons
+              selectedValue={this.state.selectedValue}
+              handleChange={this.handleChange}
+            />
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+      </div>
+    )
+  }
 }
 
 SimpleExpansionPanel.propTypes = {

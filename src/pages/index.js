@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 
 import Layout from "../components/Layout/Layout"
-import TotalWalletValue from "../components/TotalWalletValue/TotalWalletValue"
 import CurrencyCard from "../components/CurrencyCard/CurrencyCard"
 import LatestActivity from "../components/LatestActivity/LatestActivity"
 import { Typography } from "@material-ui/core"
+import SumExpansionPanel from "../components/TotalWalletValue/SumExpansionPanel"
 
 export default class index extends Component {
   state = {
@@ -226,7 +226,7 @@ export default class index extends Component {
             Hook up front-end to database to have data persistance.
           </Typography>
           {/* THIS COMPONENT DISPLAYS THE SUM OF CURRENCIES IN USD AT THE TOP OF THE PAGE */}
-          <TotalWalletValue sum={this.state.totalValueUSD} />
+          <SumExpansionPanel sum={this.state.totalValueUSD} />
 
           {/*THIS IS THE CURRENCY CARD/WALLET DISPLAY FOR USD */}
           <CurrencyCard

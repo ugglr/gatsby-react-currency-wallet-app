@@ -37,7 +37,7 @@ class OutlinedTextFields extends React.Component {
           label={"Amount of " + prefix + " to be added"}
           onChange={this.props.handleChange}
           type="number"
-          name="AddAmount"
+          name="addAmount"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,

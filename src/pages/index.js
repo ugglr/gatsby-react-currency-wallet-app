@@ -6,12 +6,37 @@ import LatestActivity from "../components/LatestActivity/LatestActivity"
 
 export default class index extends Component {
   state = {
-    AddAmount: 0,
+    addAmount: 0,
+    convertAmount: 0,
     activity: [],
     USD_wallet: 100,
     EUR_wallet: 500,
     CHF_wallet: 10000,
     totalValueUSD: null,
+  }
+
+  calculateTotalSumInDollars = () => {
+    let { USD_wallet, EUR_wallet, CHF_wallet } = this.state
+    let sum =
+      USD_wallet +
+      this.convertEURtoUSD(EUR_wallet) +
+      this.convertCHFtoUSD(CHF_wallet)
+    console.log("Sum in USD: " + sum)
+    this.setState({ totalValueUSD: sum })
+  }
+
+  convertEURtoUSD = amount => {
+    let EURtoUSD_Rate = 1.12
+    let res = amount * EURtoUSD_Rate
+    console.log("Converted: " + amount + "EUR, to: " + res + "USD")
+    return res
+  }
+
+  convertCHFtoUSD = amount => {
+    let CHFtoUSD_Rate = 0.98
+    let res = amount * CHFtoUSD_Rate
+    console.log("Converted: " + amount + "CHF, to: " + res + "USD")
+    return res
   }
 
   handleChange = async e => {
@@ -23,17 +48,17 @@ export default class index extends Component {
   }
 
   handleAddCurrency = async (e, prefix) => {
-    let { USD_wallet, EUR_wallet, CHF_wallet, AddAmount } = this.state
+    let { USD_wallet, EUR_wallet, CHF_wallet, addAmount } = this.state
     e.preventDefault()
     console.log(prefix)
     console.log("The ADD button was pressed")
     let date = Date()
-    let newActivityString = date + ": Added: " + AddAmount + prefix
+    let newActivityString = date + ": Added: " + addAmount + prefix
     console.log(newActivityString)
     switch (prefix) {
       case "USD":
         await this.setState({
-          USD_wallet: parseInt(USD_wallet) + parseInt(AddAmount),
+          USD_wallet: parseInt(USD_wallet) + parseInt(addAmount),
           activity: [newActivityString, ...this.state.activity],
           AddAmount: 0,
         })
@@ -41,14 +66,14 @@ export default class index extends Component {
         break
       case "EUR":
         await this.setState({
-          EUR_wallet: parseInt(EUR_wallet) + parseInt(AddAmount),
+          EUR_wallet: parseInt(EUR_wallet) + parseInt(addAmount),
           activity: [newActivityString, ...this.state.activity],
           AddAmount: 0,
         })
         break
       case "CHF":
         await this.setState({
-          CHF_wallet: parseInt(CHF_wallet) + parseInt(AddAmount),
+          CHF_wallet: parseInt(CHF_wallet) + parseInt(addAmount),
           activity: [newActivityString, ...this.state.activity],
           AddAmount: 0,
         })

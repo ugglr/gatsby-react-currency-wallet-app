@@ -4,10 +4,10 @@ Go to github repo:
 https://github.com/ugglr/savvy-react-currenct-wallet
 
 Clone or download repo:
-https://github.com/ugglr/savvy-react-currenct-wallet.git
+https://github.com/ugglr/gatsby-react-currency-wallet-app.git
 
 cd into directory:
-\$cd .../savvy-react-currenct-wallet <----- just realized I spelled currency wrong.
+\$cd .../gatsby-react-currency-wallet-app
 
 install dependencies with npm
 \$npm install

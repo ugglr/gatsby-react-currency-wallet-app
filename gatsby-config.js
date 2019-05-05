@@ -1,3 +1,3 @@
 module.exports = {
-  pathPrefix: "/savvy-react-currenct-wallet",
+  pathPrefix: "/gatsby-react-currency-wallet-app",
 }

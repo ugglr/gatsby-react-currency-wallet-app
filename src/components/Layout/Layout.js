@@ -138,7 +138,7 @@ class Layout extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Savvy.io Code Challenge
+              Gatsby React Currency Wallet App
             </Typography>
           </Toolbar>
         </AppBar>

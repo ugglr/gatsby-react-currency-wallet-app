@@ -1,7 +1,7 @@
 # Instructions of how to deploy the project locally on your machine
 
 Go to github repo:
-https://github.com/ugglr/savvy-react-currenct-wallet
+https://github.com/ugglr/gatsby-react-currency-wallet-app
 
 Clone or download repo:
 https://github.com/ugglr/gatsby-react-currency-wallet-app.git
